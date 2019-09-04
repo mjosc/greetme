@@ -13,11 +13,11 @@ import (
 
 func main() {
 	app := fx.New(
-		// The order of invoke options (as contained in each FXOptions call) is critical.
 		restapi.FXOptions(),
 		mockapi.FXOptions(),
 		client.FXOptions(),
 		service.FXOptions(),
+		// This must be called last in order to properly configure the api (see the invoke methods within each package)
 		server.FXOptions(),
 	)
 
