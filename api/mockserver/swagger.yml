@@ -1,0 +1,39 @@
+swagger: "2.0"
+info:
+  version: 0.1.0
+  title: Mock Server
+consumes:
+  - application/json
+produces:
+  - application/json
+schemes:
+  - http
+basePath: /api/v1/mocks
+paths:
+  /users/{name}:
+    get:
+      operationId: userByName
+      tags: [ users ]
+      parameters:
+        - in: path
+          name: name
+          required: true
+          type: string
+          minLength: 1
+          description: The name of the user to be returned
+      responses:
+        200:
+          description: A success response describing the user
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                x-nullable: false
+                minimum: 1
+                description: The user ID
+              name:
+                type: string
+                minLength: 1
+                x-nullable: false
+                description: The name of the user

@@ -1,0 +1,52 @@
+swagger: "2.0"
+info:
+  version: 0.1.0
+  title: Server
+consumes:
+  - application/json
+produces:
+  - application/json
+schemes:
+  - http
+basePath: /api/v1
+paths:
+  /greetings/{name}:
+    get:
+      operationId: greetByName
+      tags: [ greetings ]
+      parameters:
+        - in: path
+          name: name
+          required: true
+          type: string
+          minLength: 1
+          description: The name of the user to be greeted
+      responses:
+        200:
+          description: A success response with the user's greeting
+          schema:
+            type: object
+            required: [ name, greeting ]
+            properties:
+              name:
+                type: string
+                minLength: 1
+                x-nullable: false
+                description: The name of the user
+              greeting:
+                type: string
+                minLength: 1
+                x-nullable: false
+                description: The greeting used to greet the user
+        400:
+          description: An error response indicating the user does not exist
+          schema:
+            type: object
+            required: [ reason ]
+            properties:
+              reason:
+                type: string
+                description: A brief description of the error
+              description:
+                type: string
+                description: An optional detailed description of the error
