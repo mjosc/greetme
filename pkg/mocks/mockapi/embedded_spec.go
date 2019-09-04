@@ -52,14 +52,24 @@ func init() {
         ],
         "responses": {
           "200": {
-            "description": "A success response describing the user",
+            "description": "A success response describing the user if it exists and an error if not",
             "schema": {
               "type": "object",
               "properties": {
+                "error": {
+                  "type": "string",
+                  "minLength": 1,
+                  "x-nullable": false
+                },
                 "id": {
                   "description": "The user ID",
                   "type": "integer",
                   "minimum": 1,
+                  "x-nullable": false
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
                   "x-nullable": false
                 },
                 "name": {
@@ -67,6 +77,9 @@ func init() {
                   "type": "string",
                   "minLength": 1,
                   "x-nullable": false
+                },
+                "valid": {
+                  "type": "boolean"
                 }
               }
             }
@@ -111,14 +124,24 @@ func init() {
         ],
         "responses": {
           "200": {
-            "description": "A success response describing the user",
+            "description": "A success response describing the user if it exists and an error if not",
             "schema": {
               "type": "object",
               "properties": {
+                "error": {
+                  "type": "string",
+                  "minLength": 1,
+                  "x-nullable": false
+                },
                 "id": {
                   "description": "The user ID",
                   "type": "integer",
                   "minimum": 1,
+                  "x-nullable": false
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
                   "x-nullable": false
                 },
                 "name": {
@@ -126,6 +149,9 @@ func init() {
                   "type": "string",
                   "minLength": 1,
                   "x-nullable": false
+                },
+                "valid": {
+                  "type": "boolean"
                 }
               }
             }

@@ -66,16 +66,22 @@ func (o *GreetByName) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 type GreetByNameBadRequestBody struct {
 
 	// An optional detailed description of the error
+	// Min Length: 1
 	Description string `json:"description,omitempty"`
 
 	// A brief description of the error
 	// Required: true
-	Reason *string `json:"reason"`
+	// Min Length: 1
+	Reason string `json:"reason"`
 }
 
 // Validate validates this greet by name bad request body
 func (o *GreetByNameBadRequestBody) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := o.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := o.validateReason(formats); err != nil {
 		res = append(res, err)
@@ -87,9 +93,26 @@ func (o *GreetByNameBadRequestBody) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (o *GreetByNameBadRequestBody) validateDescription(formats strfmt.Registry) error {
+
+	if swag.IsZero(o.Description) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("greetByNameBadRequest"+"."+"description", "body", string(o.Description), 1); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (o *GreetByNameBadRequestBody) validateReason(formats strfmt.Registry) error {
 
-	if err := validate.Required("greetByNameBadRequest"+"."+"reason", "body", o.Reason); err != nil {
+	if err := validate.RequiredString("greetByNameBadRequest"+"."+"reason", "body", string(o.Reason)); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("greetByNameBadRequest"+"."+"reason", "body", string(o.Reason), 1); err != nil {
 		return err
 	}
 
@@ -118,15 +141,10 @@ func (o *GreetByNameBadRequestBody) UnmarshalBinary(b []byte) error {
 // swagger:model GreetByNameOKBody
 type GreetByNameOKBody struct {
 
-	// The greeting used to greet the user
+	// The greeting given to the user
 	// Required: true
 	// Min Length: 1
 	Greeting string `json:"greeting"`
-
-	// The name of the user
-	// Required: true
-	// Min Length: 1
-	Name string `json:"name"`
 }
 
 // Validate validates this greet by name o k body
@@ -134,10 +152,6 @@ func (o *GreetByNameOKBody) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := o.validateGreeting(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := o.validateName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -154,19 +168,6 @@ func (o *GreetByNameOKBody) validateGreeting(formats strfmt.Registry) error {
 	}
 
 	if err := validate.MinLength("greetByNameOK"+"."+"greeting", "body", string(o.Greeting), 1); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (o *GreetByNameOKBody) validateName(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("greetByNameOK"+"."+"name", "body", string(o.Name)); err != nil {
-		return err
-	}
-
-	if err := validate.MinLength("greetByNameOK"+"."+"name", "body", string(o.Name), 1); err != nil {
 		return err
 	}
 

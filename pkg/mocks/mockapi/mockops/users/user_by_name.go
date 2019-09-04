@@ -65,20 +65,39 @@ func (o *UserByName) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 // swagger:model UserByNameOKBody
 type UserByNameOKBody struct {
 
+	// error
+	// Min Length: 1
+	Error string `json:"error,omitempty"`
+
 	// The user ID
 	// Minimum: 1
 	ID int64 `json:"id,omitempty"`
 
+	// message
+	// Min Length: 1
+	Message string `json:"message,omitempty"`
+
 	// The name of the user
 	// Min Length: 1
 	Name string `json:"name,omitempty"`
+
+	// valid
+	Valid bool `json:"valid,omitempty"`
 }
 
 // Validate validates this user by name o k body
 func (o *UserByNameOKBody) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := o.validateError(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := o.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.validateMessage(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -92,6 +111,19 @@ func (o *UserByNameOKBody) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (o *UserByNameOKBody) validateError(formats strfmt.Registry) error {
+
+	if swag.IsZero(o.Error) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("userByNameOK"+"."+"error", "body", string(o.Error), 1); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (o *UserByNameOKBody) validateID(formats strfmt.Registry) error {
 
 	if swag.IsZero(o.ID) { // not required
@@ -99,6 +131,19 @@ func (o *UserByNameOKBody) validateID(formats strfmt.Registry) error {
 	}
 
 	if err := validate.MinimumInt("userByNameOK"+"."+"id", "body", int64(o.ID), 1, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (o *UserByNameOKBody) validateMessage(formats strfmt.Registry) error {
+
+	if swag.IsZero(o.Message) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("userByNameOK"+"."+"message", "body", string(o.Message), 1); err != nil {
 		return err
 	}
 

@@ -98,3 +98,27 @@ func (o *GreetByNameBadRequest) WriteResponse(rw http.ResponseWriter, producer r
 		}
 	}
 }
+
+// GreetByNameInternalServerErrorCode is the HTTP code returned for type GreetByNameInternalServerError
+const GreetByNameInternalServerErrorCode int = 500
+
+/*GreetByNameInternalServerError Internal server error
+
+swagger:response greetByNameInternalServerError
+*/
+type GreetByNameInternalServerError struct {
+}
+
+// NewGreetByNameInternalServerError creates GreetByNameInternalServerError with default headers values
+func NewGreetByNameInternalServerError() *GreetByNameInternalServerError {
+
+	return &GreetByNameInternalServerError{}
+}
+
+// WriteResponse to the client
+func (o *GreetByNameInternalServerError) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+
+	rw.Header().Del(runtime.HeaderContentType) //Remove Content-Type on empty responses
+
+	rw.WriteHeader(500)
+}

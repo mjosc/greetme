@@ -14,7 +14,7 @@ import (
 // UserByNameOKCode is the HTTP code returned for type UserByNameOK
 const UserByNameOKCode int = 200
 
-/*UserByNameOK A success response describing the user
+/*UserByNameOK A success response describing the user if it exists and an error if not
 
 swagger:response userByNameOK
 */

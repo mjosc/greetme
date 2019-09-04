@@ -26,18 +26,13 @@ paths:
           description: A success response with the user's greeting
           schema:
             type: object
-            required: [ name, greeting ]
+            required: [ greeting ]
             properties:
-              name:
-                type: string
-                minLength: 1
-                x-nullable: false
-                description: The name of the user
               greeting:
                 type: string
                 minLength: 1
                 x-nullable: false
-                description: The greeting used to greet the user
+                description: The greeting given to the user
         400:
           description: An error response indicating the user does not exist
           schema:
@@ -46,7 +41,13 @@ paths:
             properties:
               reason:
                 type: string
+                minLength: 1
+                x-nullable: false
                 description: A brief description of the error
               description:
                 type: string
+                minLength: 1
+                x-nullable: false
                 description: An optional detailed description of the error
+        500:
+          description: Internal server error

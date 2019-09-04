@@ -3,9 +3,11 @@ package main
 import (
 	"context"
 
+	"github.com/mjosc/greetme/pkg/client"
 	"github.com/mjosc/greetme/pkg/mocks/mockapi"
 	"github.com/mjosc/greetme/pkg/restapi"
 	"github.com/mjosc/greetme/pkg/server"
+	"github.com/mjosc/greetme/pkg/service"
 	"go.uber.org/fx"
 )
 
@@ -14,6 +16,8 @@ func main() {
 		// The order of invoke options (as contained in each FXOptions call) is critical.
 		restapi.FXOptions(),
 		mockapi.FXOptions(),
+		client.FXOptions(),
+		service.FXOptions(),
 		server.FXOptions(),
 	)
 

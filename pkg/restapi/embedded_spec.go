@@ -56,18 +56,11 @@ func init() {
             "schema": {
               "type": "object",
               "required": [
-                "name",
                 "greeting"
               ],
               "properties": {
                 "greeting": {
-                  "description": "The greeting used to greet the user",
-                  "type": "string",
-                  "minLength": 1,
-                  "x-nullable": false
-                },
-                "name": {
-                  "description": "The name of the user",
+                  "description": "The greeting given to the user",
                   "type": "string",
                   "minLength": 1,
                   "x-nullable": false
@@ -85,14 +78,21 @@ func init() {
               "properties": {
                 "description": {
                   "description": "An optional detailed description of the error",
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1,
+                  "x-nullable": false
                 },
                 "reason": {
                   "description": "A brief description of the error",
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1,
+                  "x-nullable": false
                 }
               }
             }
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -138,18 +138,11 @@ func init() {
             "schema": {
               "type": "object",
               "required": [
-                "name",
                 "greeting"
               ],
               "properties": {
                 "greeting": {
-                  "description": "The greeting used to greet the user",
-                  "type": "string",
-                  "minLength": 1,
-                  "x-nullable": false
-                },
-                "name": {
-                  "description": "The name of the user",
+                  "description": "The greeting given to the user",
                   "type": "string",
                   "minLength": 1,
                   "x-nullable": false
@@ -167,14 +160,21 @@ func init() {
               "properties": {
                 "description": {
                   "description": "An optional detailed description of the error",
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1,
+                  "x-nullable": false
                 },
                 "reason": {
                   "description": "A brief description of the error",
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1,
+                  "x-nullable": false
                 }
               }
             }
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
