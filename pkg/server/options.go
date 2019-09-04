@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/mjosc/greetme/pkg/mocks/mockapi/mockops"
+	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops"
 	"github.com/mjosc/greetme/pkg/restapi/handlers"
 	"github.com/mjosc/greetme/pkg/restapi/operations"
 	"go.uber.org/fx"

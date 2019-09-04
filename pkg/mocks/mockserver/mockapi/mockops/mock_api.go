@@ -19,7 +19,7 @@ import (
 	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/mjosc/greetme/pkg/mocks/mockapi/mockops/users"
+	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops/users"
 )
 
 // NewMockAPI creates a new Mock instance

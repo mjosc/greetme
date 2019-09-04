@@ -25,7 +25,7 @@ import (
 	flags "github.com/jessevdk/go-flags"
 	"golang.org/x/net/netutil"
 
-	"github.com/mjosc/greetme/pkg/mocks/mockapi/mockops"
+	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops"
 )
 
 const (

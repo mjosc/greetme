@@ -4,8 +4,8 @@ import (
 	errors "github.com/go-openapi/errors"
 	"github.com/go-openapi/loads"
 	runtime "github.com/go-openapi/runtime"
-	"github.com/mjosc/greetme/pkg/mocks/mockapi/handlers"
-	"github.com/mjosc/greetme/pkg/mocks/mockapi/mockops"
+	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/handlers"
+	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops"
 	"go.uber.org/fx"
 )
 

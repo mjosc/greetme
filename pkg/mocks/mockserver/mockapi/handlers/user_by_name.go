@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/go-openapi/runtime/middleware"
-	"github.com/mjosc/greetme/pkg/db/entities"
-	"github.com/mjosc/greetme/pkg/mocks/mockapi/mockops/users"
+	"github.com/mjosc/greetme/pkg/mocks/mockserver/db/entities"
+	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops/users"
 )
 
 const UserNotFound = "UserNotFound"

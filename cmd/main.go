@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/mjosc/greetme/pkg/client"
-	"github.com/mjosc/greetme/pkg/mocks/mockapi"
+	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi"
 	"github.com/mjosc/greetme/pkg/restapi"
 	"github.com/mjosc/greetme/pkg/server"
 	"github.com/mjosc/greetme/pkg/service"

@@ -10,8 +10,8 @@ import (
 	runtime "github.com/go-openapi/runtime"
 	middleware "github.com/go-openapi/runtime/middleware"
 
-	"github.com/mjosc/greetme/pkg/mocks/mockapi/mockops"
-	"github.com/mjosc/greetme/pkg/mocks/mockapi/mockops/users"
+	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops"
+	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops/users"
 )
 
 //go:generate swagger generate server --target ../pkg/mocks --name mock --spec ../api/mockserver/swagger.yml --api-package mockops --server-package mockapi --exclude-main
