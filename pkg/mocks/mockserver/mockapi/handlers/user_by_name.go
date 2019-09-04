@@ -2,20 +2,11 @@ package handlers
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/go-openapi/runtime/middleware"
-	"github.com/mjosc/greetme/pkg/mocks/mockserver/db/entities"
 	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops/users"
 )
-
-const UserNotFound = "UserNotFound"
-
-var database = map[string]*entities.User{
-	"matt": &entities.User{
-		ID:   1,
-		Name: "matt",
-	},
-}
 
 func NewUserByName() users.UserByNameHandler {
 	return &UserByName{}
@@ -26,18 +17,18 @@ type UserByName struct {
 
 func (h UserByName) Handle(params users.UserByNameParams) middleware.Responder {
 	var responder = users.NewUserByNameOK()
-
-	user, ok := database[params.Name]
-	if !ok {
+	name := strings.Title(params.Name)
+	if name != "Matt" {
 		return responder.WithPayload(&users.UserByNameOKBody{
 			Valid:   false,
-			Error:   UserNotFound,
-			Message: fmt.Sprintf("A user with the name %v does not exist", params.Name),
+			Error:   "UserNotFound",
+			Message: fmt.Sprintf("A user with the name %v does not exist", name),
+			Name:    name,
 		})
 	}
-	return users.NewUserByNameOK().WithPayload(&users.UserByNameOKBody{
+	return responder.WithPayload(&users.UserByNameOKBody{
 		Valid: true,
-		ID:    user.ID,
-		Name:  user.Name,
+		ID:    1,
+		Name:  name,
 	})
 }

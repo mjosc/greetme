@@ -1,0 +1,34 @@
+{
+	"id": "69409d7a-24a2-4017-922e-d331515de569",
+	"name": "mjosc/greetme.local",
+	"values": [
+		{
+			"key": "scheme",
+			"value": "http",
+			"enabled": true
+		},
+		{
+			"key": "domain",
+			"value": "localhost",
+			"enabled": true
+		},
+		{
+			"key": "port",
+			"value": "8080",
+			"enabled": true
+		},
+		{
+			"key": "invalidName",
+			"value": "Ann",
+			"enabled": true
+		},
+		{
+			"key": "validName",
+			"value": "Matt",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2019-09-04T20:45:49.998Z",
+	"_postman_exported_using": "Postman/7.5.0"
+}

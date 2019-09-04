@@ -26,7 +26,7 @@ func (h GreetByName) Handle(params greetings.GreetByNameParams) middleware.Respo
 	if !res.Valid {
 		return greetings.NewGreetByNameBadRequest().WithPayload(&greetings.GreetByNameBadRequestBody{
 			Reason:      UserNotFound,
-			Description: fmt.Sprintf("A user with the name %v does not exist", params.Name),
+			Description: fmt.Sprintf("A user with the name %v does not exist", res.Name),
 		})
 	}
 

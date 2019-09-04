@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "6019bd04-d4ac-42c9-b451-cdb6760f64d7",
+		"name": "mjosc/greetme",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef6ecaad-7fc3-46d9-b89b-9e52c714138e",
+						"exec": [
+							"pm.test('response is bad request', function() {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test('content-type is application/json', function() {",
+							"    pm.response.to.have.jsonBody();",
+							"});",
+							"",
+							"pm.test('response body is correct', function() {",
+							"    pm.expect(pm.response.json().description).to.eql(`A user with the name ${pm.environment.get('invalidName')} does not exist`);",
+							"    pm.expect(pm.response.json().reason).to.eql(\"UserNotFound\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{scheme}}://{{domain}}:{{port}}/api/v1/greetings/{{invalidName}}",
+					"protocol": "{{scheme}}",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"greetings",
+						"{{invalidName}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef6ecaad-7fc3-46d9-b89b-9e52c714138e",
+						"exec": [
+							"pm.test('response is ok', function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('content-type is application/json', function() {",
+							"   pm.response.to.have.jsonBody();",
+							"});",
+							"",
+							"pm.test('response body is correct', function() {",
+							"    pm.expect(pm.response.json().greeting).to.eql(`Hello, ${pm.environment.get('validName')}!`)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{scheme}}://{{domain}}:{{port}}/api/v1/greetings/{{validName}}",
+					"protocol": "{{scheme}}",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"greetings",
+						"{{validName}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
