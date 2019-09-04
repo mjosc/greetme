@@ -11,9 +11,9 @@ import (
 const UserNotFound = "UserNotFound"
 
 var database = map[string]*entities.User{
-	"Matt": &entities.User{
+	"matt": &entities.User{
 		ID:   1,
-		Name: "Matt",
+		Name: "matt",
 	},
 }
 

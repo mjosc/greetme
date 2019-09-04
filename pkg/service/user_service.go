@@ -21,7 +21,7 @@ type UserService struct {
 
 func (s *UserService) GetByName(n string) (*shared.UserServiceResponse, error) {
 
-	url := fmt.Sprintf("/api/v1/mocks/users/%v", n) // TODO: Fix path
+	url := fmt.Sprintf("http://localhost:8080/api/v1/mocks/users/%v", n) // TODO: Fix path
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
@@ -41,7 +41,7 @@ func (s *UserService) GetByName(n string) (*shared.UserServiceResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	var result *shared.UserServiceResponse
+	var result = new(shared.UserServiceResponse)
 	if err = json.Unmarshal(data, result); err != nil {
 		return nil, err
 	}
