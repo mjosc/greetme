@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/mjosc/greetme/internal"
 	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops"
 	"github.com/mjosc/greetme/pkg/restapi/handlers"
 	"github.com/mjosc/greetme/pkg/restapi/operations"
@@ -13,9 +14,11 @@ import (
 )
 
 const port = 8080
-const devMode = true
 
-func FXOptions() fx.Option {
+var devMode bool
+
+func FXOptions(config *internal.Config) fx.Option {
+	devMode = config.DevMode
 	return fx.Options(
 		fx.Invoke(
 			setup,
@@ -28,7 +31,6 @@ func setup(lc fx.Lifecycle, api *operations.GreetmeAPI, mockapi *mockops.MockAPI
 	mockapiHandler := mockapi.Serve(nil)
 
 	mux := http.NewServeMux()
-
 	mux.Handle("/api/v1/", apiHandler)
 
 	if devMode {

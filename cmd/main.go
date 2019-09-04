@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"flag"
 
+	"github.com/mjosc/greetme/internal"
 	"github.com/mjosc/greetme/pkg/client"
 	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi"
 	"github.com/mjosc/greetme/pkg/restapi"
@@ -12,13 +14,21 @@ import (
 )
 
 func main() {
+
+	devMode := flag.Bool("dev", false, "uses the built-in mockserver for all third-party api calls")
+	flag.Parse()
+
+	config := internal.Config{
+		DevMode: *devMode,
+	}
+
 	app := fx.New(
 		restapi.FXOptions(),
 		mockapi.FXOptions(),
 		client.FXOptions(),
-		service.FXOptions(),
+		service.FXOptions(&config),
 		// This must be called last in order to properly configure the api (see the invoke methods within each package)
-		server.FXOptions(),
+		server.FXOptions(&config),
 	)
 
 	app.Start(context.Background())

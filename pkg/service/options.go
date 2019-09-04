@@ -1,10 +1,14 @@
 package service
 
 import (
+	"github.com/mjosc/greetme/internal"
 	"go.uber.org/fx"
 )
 
-func FXOptions() fx.Option {
+var devMode bool
+
+func FXOptions(config *internal.Config) fx.Option {
+	devMode = config.DevMode
 	return fx.Options(
 		fx.Provide(
 			NewUserService,
