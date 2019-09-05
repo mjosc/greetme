@@ -1,7 +1,9 @@
 SWAGGER_VERSION=v0.17.0
 
+DEV_MODE?=true
+
 greetme: compile
-	bin/greetme -dev
+	bin/greetme -dev=$(DEV_MODE)
 
 compile:
 	go build -o bin/greetme cmd/*.go
