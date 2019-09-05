@@ -34,6 +34,8 @@ func setup(lc fx.Lifecycle, api *operations.GreetmeAPI, mockapi *mockops.MockAPI
 	mux.Handle("/api/v1/", apiHandler)
 
 	if devMode {
+		// We could also just register this handler with a different server instance with a different port and
+		// run it in parallel.
 		mux.Handle("/api/v1/mocks/", mockapiHandler)
 	}
 
