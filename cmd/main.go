@@ -5,6 +5,7 @@ import (
 
 	"github.com/mjosc/greetme/pkg/app"
 	"github.com/mjosc/greetme/pkg/client"
+	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi"
 	"github.com/mjosc/greetme/pkg/server"
 )
 
@@ -19,6 +20,7 @@ func main() {
 
 	app := app.New(
 		config,
+		mockapi.Register,
 		client.Register,
 		server.Register,
 	)
