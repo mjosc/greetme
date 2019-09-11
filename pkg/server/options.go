@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/mjosc/greetme/internal"
+	"github.com/mjosc/greetme/pkg/app"
 	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops"
 	"github.com/mjosc/greetme/pkg/restapi/handlers"
 	"github.com/mjosc/greetme/pkg/restapi/operations"
@@ -17,7 +17,7 @@ const port = 8080
 
 var devMode bool
 
-func FXOptions(config *internal.Config) fx.Option {
+func FXOptions(config *app.Config) fx.Option {
 	devMode = config.DevMode
 	return fx.Options(
 		fx.Invoke(

@@ -4,7 +4,7 @@ import (
 	"context"
 	"flag"
 
-	"github.com/mjosc/greetme/internal"
+	"github.com/mjosc/greetme/pkg/app"
 	"github.com/mjosc/greetme/pkg/client"
 	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi"
 	"github.com/mjosc/greetme/pkg/restapi"
@@ -18,7 +18,7 @@ func main() {
 	devMode := flag.Bool("dev", false, "uses the built-in mockserver for all third-party api calls")
 	flag.Parse()
 
-	config := internal.Config{
+	config := app.Config{
 		DevMode: *devMode,
 	}
 
