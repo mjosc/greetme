@@ -4,12 +4,13 @@ import (
 	errors "github.com/go-openapi/errors"
 	"github.com/go-openapi/loads"
 	runtime "github.com/go-openapi/runtime"
+	"github.com/mjosc/greetme/pkg/app"
 	"github.com/mjosc/greetme/pkg/restapi/handlers"
 	"github.com/mjosc/greetme/pkg/restapi/operations"
 	"go.uber.org/fx"
 )
 
-func FXOptions() fx.Option {
+func Register(*app.Config) fx.Option {
 	return fx.Options(
 		fx.Provide(
 			newAPI,
