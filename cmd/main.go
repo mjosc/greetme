@@ -16,6 +16,7 @@ func main() {
 
 	config := &app.Config{
 		DevMode: *devMode,
+		Port:    8000,
 	}
 
 	app := app.New(

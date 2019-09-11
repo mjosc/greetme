@@ -3,8 +3,8 @@ package app
 import "go.uber.org/fx"
 
 type Config struct {
-	DevMode         bool
-	UserServicePort int
+	DevMode bool
+	Port    int
 }
 
 // FXRegistrationFunc is the function signature of any function used to register dependencies or other

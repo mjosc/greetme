@@ -7,18 +7,15 @@ import (
 	"net/http"
 
 	"github.com/mjosc/greetme/pkg/app"
-	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops"
 	"github.com/mjosc/greetme/pkg/restapi/handlers"
 	"github.com/mjosc/greetme/pkg/restapi/operations"
 	"go.uber.org/fx"
 )
 
-const port = 8080
-
-var devMode bool
+var configuration *app.Config
 
 func Register(config *app.Config) fx.Option {
-	devMode = config.DevMode
+	configuration = config
 	return fx.Options(
 		fx.Invoke(
 			setup,
@@ -26,21 +23,14 @@ func Register(config *app.Config) fx.Option {
 	)
 }
 
-func setup(lc fx.Lifecycle, api *operations.GreetmeAPI, mockapi *mockops.MockAPI, handlers handlers.Handlers) {
+func setup(lc fx.Lifecycle, api *operations.GreetmeAPI, handlers handlers.Handlers) {
 	apiHandler := api.Serve(nil)
-	mockapiHandler := mockapi.Serve(nil)
 
 	mux := http.NewServeMux()
 	mux.Handle("/api/v1/", apiHandler)
 
-	if devMode {
-		// We could also just register this handler with a different server instance with a different port and
-		// run it in parallel.
-		mux.Handle("/api/v1/mocks/", mockapiHandler)
-	}
-
 	server := &http.Server{
-		Addr:    fmt.Sprintf(":%v", port),
+		Addr:    fmt.Sprintf(":%v", configuration.Port),
 		Handler: mux,
 	}
 
