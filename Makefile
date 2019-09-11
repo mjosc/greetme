@@ -2,7 +2,7 @@ SWAGGER_VERSION=v0.17.0
 
 DEV_MODE?=true
 
-greetme: compile
+app: compile
 	bin/greetme -dev=$(DEV_MODE)
 
 compile:
