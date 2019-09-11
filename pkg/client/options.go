@@ -1,13 +1,18 @@
 package client
 
 import (
+	"github.com/mjosc/greetme/pkg/app"
 	"go.uber.org/fx"
 )
 
-func FXOptions() fx.Option {
+var devMode bool
+
+func Register(config *app.Config) fx.Option {
+	devMode = config.DevMode
 	return fx.Options(
 		fx.Provide(
 			NewHTTPClient,
+			NewUserService,
 		),
 	)
 }

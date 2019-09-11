@@ -17,7 +17,7 @@ const port = 8080
 
 var devMode bool
 
-func FXOptions(config *app.Config) fx.Option {
+func Register(config *app.Config) fx.Option {
 	devMode = config.DevMode
 	return fx.Options(
 		fx.Invoke(

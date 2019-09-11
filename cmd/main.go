@@ -4,6 +4,8 @@ import (
 	"flag"
 
 	"github.com/mjosc/greetme/pkg/app"
+	"github.com/mjosc/greetme/pkg/client"
+	"github.com/mjosc/greetme/pkg/server"
 )
 
 func main() {
@@ -17,6 +19,8 @@ func main() {
 
 	app := app.New(
 		config,
+		client.Register,
+		server.Register,
 	)
 
 	app.Run()
