@@ -16,6 +16,8 @@ import (
 
 var configuration *app.Config
 
+// Register is the entry-point to register all components of the mock user service with FX. It should
+// be called from services.Register which will make it accessible to the main application.
 func Register(config *app.Config) fx.Option {
 	configuration = config
 	return fx.Options(
