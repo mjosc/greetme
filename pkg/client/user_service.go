@@ -12,8 +12,8 @@ import (
 func NewUserService(client shared.HTTPClient) shared.UserService {
 	var url string
 	// This will obviously error with an empty url outside of dev mode
-	if devMode {
-		url = "http://localhost:8080/api/v1/mocks/"
+	if configuration.DevMode {
+		url = fmt.Sprintf("http://localhost:%v/api/v1", configuration.MockUserServicePort)
 	}
 	return &UserService{
 		HTTPClient: client,

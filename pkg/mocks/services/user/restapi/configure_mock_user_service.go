@@ -1,6 +1,6 @@
 // This file is safe to edit. Once it exists it will not be overwritten
 
-package mockapi
+package restapi
 
 import (
 	"crypto/tls"
@@ -10,17 +10,17 @@ import (
 	runtime "github.com/go-openapi/runtime"
 	middleware "github.com/go-openapi/runtime/middleware"
 
-	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops"
-	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops/users"
+	"github.com/mjosc/greetme/pkg/mocks/services/user/restapi/operations"
+	"github.com/mjosc/greetme/pkg/mocks/services/user/restapi/operations/users"
 )
 
-//go:generate swagger generate server --target ../pkg/mocks --name mock --spec ../api/mockserver/swagger.yml --api-package mockops --server-package mockapi --exclude-main
+//go:generate swagger generate server --target ../pkg/mocks/services/user --name mock_user_service --spec ../api/mocks/user.yml --exclude-main
 
-func configureFlags(api *mockops.MockAPI) {
+func configureFlags(api *operations.MockUserServiceAPI) {
 	// api.CommandLineOptionsGroups = []swag.CommandLineOptionsGroup{ ... }
 }
 
-func configureAPI(api *mockops.MockAPI) http.Handler {
+func configureAPI(api *operations.MockUserServiceAPI) http.Handler {
 	// configure the api here
 	api.ServeError = errors.ServeError
 

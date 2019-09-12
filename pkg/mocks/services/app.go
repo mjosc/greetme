@@ -1,18 +1,13 @@
-package client
+package services
 
 import (
 	"github.com/mjosc/greetme/pkg/app"
+	"github.com/mjosc/greetme/pkg/mocks/services/user"
 	"go.uber.org/fx"
 )
 
-var configuration *app.Config
-
 func Register(config *app.Config) fx.Option {
-	configuration = config
 	return fx.Options(
-		fx.Provide(
-			NewHTTPClient,
-			NewUserService,
-		),
+		user.Register(config),
 	)
 }

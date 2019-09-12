@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops/users"
+	"github.com/mjosc/greetme/pkg/mocks/services/user/restapi/operations/users"
 	"go.uber.org/fx"
 )
 

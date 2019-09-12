@@ -1,12 +1,12 @@
-package mockapi
+package restapi
 
 import (
 	errors "github.com/go-openapi/errors"
 	"github.com/go-openapi/loads"
 	runtime "github.com/go-openapi/runtime"
 	"github.com/mjosc/greetme/pkg/app"
-	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/handlers"
-	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops"
+	"github.com/mjosc/greetme/pkg/mocks/services/user/restapi/handlers"
+	"github.com/mjosc/greetme/pkg/mocks/services/user/restapi/operations"
 	"go.uber.org/fx"
 )
 
@@ -22,15 +22,15 @@ func Register(*app.Config) fx.Option {
 	)
 }
 
-func newAPI() (*mockops.MockAPI, error) {
+func newAPI() (*operations.MockUserServiceAPI, error) {
 	spec, err := loads.Analyzed(SwaggerJSON, "")
 	if err != nil {
 		return nil, err
 	}
-	return mockops.NewMockAPI(spec), nil
+	return operations.NewMockUserServiceAPI(spec), nil
 }
 
-func setupAPI(api *mockops.MockAPI, handlers handlers.Handlers) {
+func setupAPI(api *operations.MockUserServiceAPI, handlers handlers.Handlers) {
 	errors.DefaultHTTPCode = 400
 	api.ServeError = errors.ServeError
 	api.JSONConsumer = runtime.JSONConsumer()

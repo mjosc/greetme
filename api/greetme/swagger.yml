@@ -51,3 +51,4 @@ paths:
                 description: An optional detailed description of the error
         500:
           description: Internal server error
+

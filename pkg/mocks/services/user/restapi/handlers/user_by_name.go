@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/go-openapi/runtime/middleware"
-	"github.com/mjosc/greetme/pkg/mocks/mockserver/mockapi/mockops/users"
+	"github.com/mjosc/greetme/pkg/mocks/services/user/restapi/operations/users"
 )
 
 func NewUserByName() users.UserByNameHandler {

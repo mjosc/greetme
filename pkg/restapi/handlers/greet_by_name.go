@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/mjosc/greetme/pkg/restapi/operations/greetings"
@@ -21,6 +22,7 @@ type GreetByName struct {
 func (h GreetByName) Handle(params greetings.GreetByNameParams) middleware.Responder {
 	res, err := h.UserService.GetByName(params.Name)
 	if err != nil {
+		log.Println(err)
 		return greetings.NewGreetByNameInternalServerError()
 	}
 	if !res.Valid {

@@ -8,7 +8,7 @@ produces:
   - application/json
 schemes:
   - http
-basePath: /api/v1/mocks
+basePath: /api/v1
 paths:
   /users/{name}:
     get:
